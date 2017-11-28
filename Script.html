@@ -223,24 +223,34 @@ div.tocify {
 </div>
 
 
+<!--
+Define styling of exercise and homework sections (unnumbered headers)
+-->
 <style>
 .unnumbered {
-color: #02485C;
-background: #FFAE5C;
-padding: 0.1px 20px 10px 20px;
+  color: #02485C;
+  background: #FFAE5C;
+  padding: 0.1px 20px 10px 20px;
 }
 .unnumbered ol {
-padding: 0 20px 0 20px;
+  padding: 0 20px 0 20px;
 }
 .unnumbered ul {
-padding: 0 20px 0 20px;
+  padding: 0 20px 0 20px;
 }
 </style>
-<!-- TODO: 
-- Include http://r4ds.had.co.nz and tidyverse package 
-- tibble vs. dataframe? => dataframe!
-- dplyr (https://idc9.github.io/stor390/notes/dplyr/dplyr.html)
-- https://rafalab.github.io/dsbook/index.html (Harvard)
+<!--
+TODO: 
++ Update exercises & homework. Especially from 5.5. Merging onwards
++ Update Statistical Modelling part. How much methodology should be in there?
++ Update Loops and Functions part. include apply. include if else statements.
+  Should this section come earlier?
++ Update Workflow part. Especially integration with word should be illustrated
+  because it is a big hurdle for most people. 
++ Develop part on web-scraping and quantitative text analysis
++ Develop part on shiny
++ Develop part on graphs/ggplot2
++ Develop part on maxQDA/NViVo alternatives (RQDA?)
 -->
 <hr />
 <div id="introduction" class="section level1">
@@ -261,22 +271,9 @@ padding: 0 20px 0 20px;
 <li>… the programming language R: <a href="https://cran.r-project.org">Download and Install Me Now!</a></li>
 <li>… the user interface RStudio: <a href="https://www.rstudio.com">Download and Install Me Now!</a></li>
 </ul>
-<p><strong>Graphs in R:</strong> By Daniel Paierl on Friday (23/11), 14:00-18:00. Follow this <a href="http://bit.ly/2zRpf1A">link</a> to download the (separate) course material for this part.</p>
-<!-- 
-For 10 credits you need to ...
-
-* Hand in all exercises that you find in this script (marked by "exercise")
-* In your own R-script use full title and name of exercise
-* We expect an r-script that runs in one chunk without problems (includes packages etc.)
-* Comment extensively what you did
-* Deadline: 18.3.2016 (2 weeks)
-* Exercises are corrected by Adrián and Matthias
-* There are no exceptions to this deadline ["Exceptions": medical certificate, case of hardship]
--->
-<hr />
 <div align="left">
-<p><em>Acknowledgement: This course builds upon a script designed by Paul C. Bauer, who himself was inspired by Rudolf Farys. Likewise, you can freely use the Markdown file to adopt this script to your teaching needs. (script-v.0.6-2017-11-23) </em></p>
-<img src="data:image/png;base64,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" width="25px"><img src="data:image/png;base64,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" width="25px">
+<p><em>Acknowledgement: This course builds upon a script designed by Paul C. Bauer, who himself was inspired by Rudolf Farys. Likewise, you can freely use the Markdown file to adopt this script to your teaching needs. Please find the R Markdown and all other necessary files in the GitHub repository linked below. (script-v.0.7-2017-11-28) </em></p>
+<p><a href="https://github.com/pwangen/Intro-Data-Analysis-with-R"> <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyRpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoTWFjaW50b3NoKSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDpFNTE3OEEyRTk5QTAxMUUyOUExNUJDMTA0NkE4OTA0RCIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDpFNTE3OEEyRjk5QTAxMUUyOUExNUJDMTA0NkE4OTA0RCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkU1MTc4QTJDOTlBMDExRTI5QTE1QkMxMDQ2QTg5MDREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOkU1MTc4QTJEOTlBMDExRTI5QTE1QkMxMDQ2QTg5MDREIi8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+FYrpWAAABrNJREFUeNrkW2ls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" width="25px"></a> <img src="data:image/png;base64,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" width="25px"> <img src="data:image/png;base64,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" width="25px"></p>
 </div>
 <hr />
 </div>
@@ -495,13 +492,13 @@ x &lt;- 42
 x</code></pre>
 <pre><code>## [1] 42</code></pre>
 <pre class="r"><code># Save single object outside of RStudio
-save(x, file = &quot;data/myObject.RData&quot;)
+save(x, file = &quot;myObject.RData&quot;)
 
 # Save all objects of your environment outside of RStudio
-save.image(file = &quot;data/myEnvironment.RData&quot;)
+save.image(file = &quot;myEnvironment.RData&quot;)
 
 # Load .RData files into your current environment
-load(&quot;data/myObject.RData&quot;)
+load(&quot;myObject.RData&quot;)
 
 # Delete object from environment
 rm(x)</code></pre>
@@ -1710,12 +1707,6 @@ plot(density(fela$ethfrac))</code></pre>
 <li><a href="https://plot.ly/">Plotly</a> for interactive graphs (e.g. on webpage)</li>
 <li><a href="https://shiny.rstudio.com/">Shiny</a> for interactive apps/graphs (complicated but more versatile replacement for NViVo/MaxQDA)</li>
 </ul>
-<!--
-## Exercise: Simple statistics and contingency tables [&#8593;](#top)
-1. Find at least two ways to calculate the product of all numbers 1 to 8 with the help of R (Tipp cumprod()).
-2. Store the values for the two variables ```Assault``` and ```UrbanPop``` (dataframe ```USArrests```) in two vectors ```x``` and ```y```. Calculate for both vectors ```x``` and ```y``` the mean, the maximum, the minimum and the variance and save all the results in two objects ```statistics.x``` and ```statistics.y```. Name the elements of these two objects "Mean", "Max" etc. Save ```statistics.x``` and ```statistics.y``` as list elements in one list. Finally, check wether the two vectors  ```x``` and ```y``` strongly correlate with each other.
-
--->
 </div>
 </div>
 <div id="statistical-modelling" class="section level1">
@@ -1915,6 +1906,7 @@ ggplot(afgh_fit_poisson, aes(x = year)) +
 <li><a href="https://www.jaredknowles.com/journal/2013/11/25/getting-started-with-mixed-effect-models-in-r">Another Tutorial</a></li>
 <li><a href="https://stats.idre.ucla.edu/r/dae/mixed-effects-logistic-regression/">UCLA ME for Logistic</a></li>
 </ul>
+<!-- sjp.glmer {sjPlot} -->
 <div id="homework-8" class="section level3 unnumbered">
 <h3>Homework</h3>
 <ul>
@@ -1992,68 +1984,9 @@ output_of_function</code></pre>
 <li><a href="https://www.datacamp.com/community/tutorials/tutorial-on-loops-in-r">Loops Tutorial</a></li>
 <li><a href="https://www2.warwick.ac.uk/fac/sci/moac/degrees/moac/ch923/r_introduction/r_programming/">Loops and Functions Tutorial</a></li>
 </ul>
-<!--
-apply, lapply, etc. -- dplyr?
-
-```r
-# Functions: e.g. cos(); mean()
-quadraticfunction <- function(){x^2}
-class(quadraticfunction)
-quadraticfunction
-
-class(mean)
-mean
-```
--->
-<!--
-# Webscraping and Quantitative Text Analysis
-
-* HTML/xpath logic
-* quanteda and tm packages
-* APIs in general
-* python vs. R
-* regex
-* encoding
-* Natural Language Processing (tokenizing, stemming, etc.)
-* Machine Learning and Implications
-
-### Importing of/over other formats: HTML, APIs [&#8593;](#top)
-
-#### APIs [&#8593;](#top)
-* More and more websites provide an API (Application programming interface) that can be used to access their data
-* See [this page](http://www.programmableweb.com/apis/directory) for an overview of APIs
-* Example: World development indicators (Worldbank)
-
-
-```r
-# install.packages("WDI") # install package to use WDI API
-library(WDI) # load the package
-# WDIsearch(string="gdp", field="name", cache=NULL)
-DF <- WDI(country="all", indicator="NY.GDP.MKTP.PP.KD", start=2005, end=2005) 
-DF[1:3, 1:4]
-```
-
-#### HTML [&#8593;](#top)
-* Lots of data lies around on Html pages in the internet
-
-
-```r
-install.packages("XML")
-library(XML)
-
-# BADACH
-url <- "http://www.badac.ch/db/db.php?abs=canton_x&code=Csi11.51&annee=2009&arg=&lang=De"
-unemployment <- data.frame(readHTMLTable(url)$table_data)
-names(unemployment) <- c("nr", "abbr", "name", "unemp")
-```
-
--->
 </div>
 <div id="workflow-r-latex-word" class="section level1">
 <h1><span class="header-section-number">9</span> Workflow: R, LaTeX, Word</h1>
-<blockquote>
-<p><strong>THIS PART NEEDS UPDATING!</strong></p>
-</blockquote>
 <div id="office-software-and-r" class="section level2">
 <h2><span class="header-section-number">9.1</span> Office Software and R</h2>
 <p>R users are mainly Latex users, so Latex integration is superior to Word integration. However there are tricks to improve your workflow when working with R and Word:</p>

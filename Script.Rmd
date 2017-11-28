@@ -14,26 +14,24 @@ output:
             smooth_scroll: false
             self_contained: yes
 ---
+
+<!--
+Define styling of exercise and homework sections (unnumbered headers)
+-->
+
 <style>
 .unnumbered {
-color: #02485C;
-background: #FFAE5C;
-padding: 0.1px 20px 10px 20px;
+  color: #02485C;
+  background: #FFAE5C;
+  padding: 0.1px 20px 10px 20px;
 }
 .unnumbered ol {
-padding: 0 20px 0 20px;
+  padding: 0 20px 0 20px;
 }
 .unnumbered ul {
-padding: 0 20px 0 20px;
+  padding: 0 20px 0 20px;
 }
 </style>
-
-<!-- TODO: 
-- Include http://r4ds.had.co.nz and tidyverse package 
-- tibble vs. dataframe? => dataframe!
-- dplyr (https://idc9.github.io/stor390/notes/dplyr/dplyr.html)
-- https://rafalab.github.io/dsbook/index.html (Harvard)
--->
 
 ```{r setup, include=FALSE}
 
@@ -43,6 +41,20 @@ knitr::opts_chunk$set(eval=FALSE)
 try(setwd("/Users/patricewangen/Documents/European University Institute/600_Teaching/Introduction to Data Analysis in R"))
 
 ```
+
+<!--
+TODO: 
++ Update exercises & homework. Especially from 5.5. Merging onwards
++ Update Statistical Modelling part. How much methodology should be in there?
++ Update Loops and Functions part. include apply. include if else statements.
+  Should this section come earlier?
++ Update Workflow part. Especially integration with word should be illustrated
+  because it is a big hurdle for most people. 
++ Develop part on web-scraping and quantitative text analysis
++ Develop part on shiny
++ Develop part on graphs/ggplot2
++ Develop part on maxQDA/NViVo alternatives (RQDA?)
+-->
 
 ***
 
@@ -73,25 +85,15 @@ All you need is ...
 * ... the programming language R: [Download and Install Me Now!](https://cran.r-project.org)
 * ... the user interface RStudio: [Download and Install Me Now!](https://www.rstudio.com)
 
-__Graphs in R:__ By Daniel Paierl on Friday (23/11), 14:00-18:00. Follow this [link](http://bit.ly/2zRpf1A) to download the (separate) course material for this part.
-
-<!-- 
-For 10 credits you need to ...
-
-* Hand in all exercises that you find in this script (marked by "exercise")
-* In your own R-script use full title and name of exercise
-* We expect an r-script that runs in one chunk without problems (includes packages etc.)
-* Comment extensively what you did
-* Deadline: 18.3.2016 (2 weeks)
-* Exercises are corrected by Adrián and Matthias
-* There are no exceptions to this deadline ["Exceptions": medical certificate, case of hardship]
--->
-***
-
 <div align = left>
-_Acknowledgement: This course builds upon a script designed by Paul C. Bauer, who himself was inspired by Rudolf Farys. Likewise, you can freely use the Markdown file to adopt this script to your teaching needs. (script-v.0.6-2017-11-23) _ 
+_Acknowledgement: This course builds upon a script designed by Paul C. Bauer, who himself was inspired by Rudolf Farys. Likewise, you can freely use the Markdown file to adopt this script to your teaching needs. Please find the R Markdown and all other necessary files in the GitHub repository linked below. (script-v.0.7-2017-11-28) _ 
 
-<img src = "img/cc.png" width = 25px><img src = "img/cc_by.png" width = 25px></div>
+<a href="https://github.com/pwangen/Intro-Data-Analysis-with-R">
+<img src = "img/github.png" width = 25px></a>
+<img src = "img/cc.png" width = 25px>
+<img src = "img/cc_by.png" width = 25px>
+
+</div>
 
 ***
 
@@ -151,7 +153,6 @@ It's cool and useful!
 + [Statnet project](https://statnet.csde.washington.edu/trac) and [sna package](jstatsoft.org/v24/i06/paper) for network analysis
 + [Quanteda](https://github.com/kbenoit/quanteda) for quantitative text analysis
 + [R Shiny](http://shiny.rstudio.com/) is the new shooting star. It combines R with a webserver to easily build webapplications that are fully powered by R. See some [bad ass examples here](http://shiny.rstudio.com/gallery/)!
-
 
 <br>
 And ... it's difficult to learn. However, once you pass a certain threshold, we promise that R will save time in your research process rather than waste it.
@@ -302,17 +303,24 @@ x <- 42
 x
 
 # Save single object outside of RStudio
-save(x, file = "data/myObject.RData")
+save(x, file = "myObject.RData")
 
 # Save all objects of your environment outside of RStudio
-save.image(file = "data/myEnvironment.RData")
+save.image(file = "myEnvironment.RData")
 
 # Load .RData files into your current environment
-load("data/myObject.RData")
+load("myObject.RData")
 
 # Delete object from environment
 rm(x)
 ```
+
+```{r, eval = TRUE, include =  FALSE}
+# Remove these files again to keep folders clean of nonsense.
+file.remove("myObject.RData")
+file.remove("myEnvironment.RData")
+```
+
 
 ## Object Classes
 
@@ -1073,13 +1081,6 @@ __Useful Packages:__
 * [Plotly](https://plot.ly/) for interactive graphs (e.g. on webpage)
 * [Shiny](https://shiny.rstudio.com/) for interactive apps/graphs (complicated but more versatile replacement for NViVo/MaxQDA)
 
-<!--
-## Exercise: Simple statistics and contingency tables [&#8593;](#top)
-1. Find at least two ways to calculate the product of all numbers 1 to 8 with the help of R (Tipp cumprod()).
-2. Store the values for the two variables ```Assault``` and ```UrbanPop``` (dataframe ```USArrests```) in two vectors ```x``` and ```y```. Calculate for both vectors ```x``` and ```y``` the mean, the maximum, the minimum and the variance and save all the results in two objects ```statistics.x``` and ```statistics.y```. Name the elements of these two objects "Mean", "Max" etc. Save ```statistics.x``` and ```statistics.y``` as list elements in one list. Finally, check wether the two vectors  ```x``` and ```y``` strongly correlate with each other.
-
--->
-
 # Statistical Modelling
 
 This part is more condensed because depending on your field and research, you will require very different statistical models. While they all share the basic mathematical (and epistemological) idea that a specific constallation of explanatory variables (X) are used to try to explain a certain outcome (y). In that sense, any statistical model consists simply of one or several mathematical equations. The simplest of which is the basic linear model:
@@ -1251,6 +1252,8 @@ Multilevel/Hierarchical Models](http://www.cambridge.org/us/academic/subjects/st
 * [Another Tutorial](https://www.jaredknowles.com/journal/2013/11/25/getting-started-with-mixed-effect-models-in-r)
 * [UCLA ME for Logistic](https://stats.idre.ucla.edu/r/dae/mixed-effects-logistic-regression/)
 
+<!-- sjp.glmer {sjPlot} -->
+
 ### Homework {-}
 * Considering that Fearon and Laitin work with time-series cross-section data, should we use a multilevel model? Which one? 
 * Check whether their findings hold if you add random intercepts per country and per year.
@@ -1329,64 +1332,7 @@ __Useful Links:__
 * [Loops Tutorial](https://www.datacamp.com/community/tutorials/tutorial-on-loops-in-r)
 * [Loops and Functions Tutorial](https://www2.warwick.ac.uk/fac/sci/moac/degrees/moac/ch923/r_introduction/r_programming/)
 
-<!--
-apply, lapply, etc. -- dplyr?
-```{r}
-# Functions: e.g. cos(); mean()
-quadraticfunction <- function(){x^2}
-class(quadraticfunction)
-quadraticfunction
-
-class(mean)
-mean
-```
--->
-<!--
-# Webscraping and Quantitative Text Analysis
-
-* HTML/xpath logic
-* quanteda and tm packages
-* APIs in general
-* python vs. R
-* regex
-* encoding
-* Natural Language Processing (tokenizing, stemming, etc.)
-* Machine Learning and Implications
-
-### Importing of/over other formats: HTML, APIs [&#8593;](#top)
-
-#### APIs [&#8593;](#top)
-* More and more websites provide an API (Application programming interface) that can be used to access their data
-* See [this page](http://www.programmableweb.com/apis/directory) for an overview of APIs
-* Example: World development indicators (Worldbank)
-
-```{r}
-# install.packages("WDI") # install package to use WDI API
-library(WDI) # load the package
-# WDIsearch(string="gdp", field="name", cache=NULL)
-DF <- WDI(country="all", indicator="NY.GDP.MKTP.PP.KD", start=2005, end=2005) 
-DF[1:3, 1:4]
-```
-
-#### HTML [&#8593;](#top)
-* Lots of data lies around on Html pages in the internet
-
-```{r}
-install.packages("XML")
-library(XML)
-
-# BADACH
-url <- "http://www.badac.ch/db/db.php?abs=canton_x&code=Csi11.51&annee=2009&arg=&lang=De"
-unemployment <- data.frame(readHTMLTable(url)$table_data)
-names(unemployment) <- c("nr", "abbr", "name", "unemp")
-```
-
--->
-
-
 # Workflow: R, LaTeX, Word
-
-> __THIS PART NEEDS UPDATING!__
 
 ## Office Software and R
 
@@ -1499,15 +1445,6 @@ texreg(list(fit1, fit2), booktabs = FALSE, dcolumn= FALSE)
 + good out-of-the-box-tool
 + uses dcolumn and booktabs as default
 + robust SE supported but nasty to do in practice
-
-
-
-
-
-
-
-
-
 
 <!-- 
 The following includes the EUI logo as URI in the header of the script.
