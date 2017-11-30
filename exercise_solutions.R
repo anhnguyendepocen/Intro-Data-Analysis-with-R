@@ -413,9 +413,9 @@ separationplot(y_hat, as.numeric(mod1$y))
 # probabilities are on the left, and those with higher probabilities are on 
 # right side of the graph. 
 # The third and final element of the graph is that it highlights the observations 
-# with CSDP missions by vertical lines. 
+# with civil war onsets by vertical lines. 
 # These three elements combined juxtapose the hypothetical predictions of a 
-# mission based on the model, with the factual observation of the CSDP missions. 
+# mission based on the model, with the factual observation of civil war onsets. 
 # The more those two coincide, the better the model-fit.
 
 # Once we understand the logic of these graphs, we can make it look nicer and
